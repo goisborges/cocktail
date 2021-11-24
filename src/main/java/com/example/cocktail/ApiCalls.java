@@ -42,7 +42,7 @@ public class ApiCalls {
     public static ApiResponse getAllCocktailsAPI(String searchTerm) throws IOException, InterruptedException {
         searchTerm = searchTerm.trim().replace(" ", "%20");
 
-        String uri = "www.thecocktaildb.com/api/json/v1/1/search.php?s=" + searchTerm;
+        String uri = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + searchTerm;
         System.out.println(uri);
 
         HttpClient client = HttpClient.newHttpClient();
@@ -96,6 +96,53 @@ public class ApiCalls {
         }
 
         return getAllCocktailsJSON();
+
+    }
+
+    //method that will parse JSON file to retrieve all categories
+    //create a method that returns all cocktails list from JSON file
+    public static ApiResponse getAllCategoriesJSON() {
+        //create a GSON object
+        Gson gson = new Gson();
+
+        ApiResponse response = null;
+
+        try (
+                FileReader reader = new FileReader("src/main/resources/categories.json");
+                JsonReader jsonReader = new JsonReader(reader)
+        )
+        {
+            response = gson.fromJson(jsonReader, ApiResponse.class);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println(response);
+        return response;
+
+    }
+
+    //create a method named getCategoryList that returns a list of categories
+    public static ApiResponse getCategoryList() {
+        //create a GSON object
+        Gson gson = new Gson();
+
+        ApiResponse response = null;
+
+        try {
+            HttpClient client = HttpClient.newHttpClient();
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create("https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list"))
+                    .build();
+            HttpResponse<Path> httpResponse = client.send(request, HttpResponse.BodyHandlers.ofFile(Paths.get("src/main/resources/categories.json")));
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        return getAllCategoriesJSON();
 
     }
 }

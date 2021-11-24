@@ -5,6 +5,7 @@ module com.example.cocktail {
     requires java.net.http;
     requires gson;
     requires java.sql;
+    requires com.jfoenix;
 
     opens com.example.cocktail to javafx.fxml, gson;
     exports com.example.cocktail;

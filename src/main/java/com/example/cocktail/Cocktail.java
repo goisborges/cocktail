@@ -184,4 +184,8 @@ public class Cocktail {
     public void setStrMeasure6(String strMeasure6) {
         this.strMeasure6 = strMeasure6;
     }
+
+    public String toString(){
+        return String.format("%s", strDrink);
+    }
 }

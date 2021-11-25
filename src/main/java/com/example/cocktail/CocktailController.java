@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXRadioButton;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -13,6 +14,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -55,10 +57,20 @@ public class CocktailController implements Initializable {
     private JFXButton showDrinkBtn;
 
     @FXML
+    private Button searchIngredientBtn;
+
+
+    @FXML
     private void getSearchResults() throws IOException, InterruptedException {
+        //clear the listview
         ListView.getItems().clear();
-        showDrinkImage();
-        //insert an image saying "Choose your drink"
+
+        //when user search for a drink, set the image to a general drink image and ask user to choose a drink
+        File file = new File("src/main/resources/com/example/cocktail/drinks-background.jpg");
+        Image image = new Image(file.toURI().toString());
+        imageView.setImage(image);
+        drinkNameLabel.setText("Choose a Drink");
+
 
         ApiResponse apiResponse = ApiCalls.getAllCocktailsAPI(searchNameTextField.getText());
         if (apiResponse.getDrinks() != null) {
@@ -72,9 +84,20 @@ public class CocktailController implements Initializable {
     @FXML
     private void getSearchIngredient() throws IOException, InterruptedException {
         ListView.getItems().clear();
-        ApiResponse apiResponse = ApiCalls.searchCocktailByIngredient(searchNameTextField.getText());
-        if (apiResponse != null) {
+
+        //when user search for a drink, set the image to a general drink image and ask user to choose a drink
+        File file = new File("src/main/resources/com/example/cocktail/drinks-background.jpg");
+        Image image = new Image(file.toURI().toString());
+        imageView.setImage(image);
+        drinkNameLabel.setText("Choose a Drink");
+
+        ApiResponse apiResponse = ApiCalls.searchCocktailByIngredient(searchIngredientTextField.getText());
+
+        if (apiResponse.getDrinks() != null) {
             ListView.getItems().addAll(apiResponse.getDrinks());
+        }
+        else{
+            drinkNameLabel.setText("No results found");
         }
     }
 
@@ -108,5 +131,11 @@ public class CocktailController implements Initializable {
         } else {
             imageView.setVisible(false);
         }
+    }
+
+    @FXML
+    private void getDrinkDetails(ActionEvent event) throws IOException, InterruptedException {
+        String drinkId = ListView.getSelectionModel().getSelectedItem().getIdDrink();
+        SceneChanger.changeScenes(event, "drink-details-view.fxml", drinkId);
     }
 }

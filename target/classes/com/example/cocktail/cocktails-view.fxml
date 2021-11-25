@@ -66,7 +66,7 @@
                         <Cursor fx:constant="TEXT" />
                      </cursor>
                   </TextField>
-                  <Button fx:id="searchBtn" alignment="CENTER" contentDisplay="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#getSearchResults" prefHeight="25.0" prefWidth="162.0" text="Search By Name" textAlignment="CENTER">
+                  <Button fx:id="searchBtn" alignment="CENTER" contentDisplay="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#getSearchResults" prefHeight="25.0" prefWidth="145.0" text="Search By Name" textAlignment="CENTER" translateX="5.0">
                      <VBox.margin>
                         <Insets bottom="20.0" left="5.0" right="5.0" />
                      </VBox.margin>
@@ -82,13 +82,16 @@
                         <Cursor fx:constant="TEXT" />
                      </cursor>
                   </TextField>
-                  <Button fx:id="searchBtn1" alignment="CENTER" contentDisplay="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#getSearchIngredient" prefHeight="25.0" prefWidth="168.0" text="Search By Ingredient" textAlignment="CENTER">
+                  <Button fx:id="searchIngredientBtn" alignment="CENTER" contentDisplay="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#getSearchIngredient" prefHeight="25.0" prefWidth="138.0" text="Search By Ingredient" textAlignment="CENTER" translateX="14.0" wrapText="true">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
                   </Button>
                   <Separator prefWidth="200.0" />
-                  <JFXButton fx:id="showDrinkBtn" alignment="CENTER" contentDisplay="CENTER" prefHeight="61.0" prefWidth="140.0" ripplerFill="#1a1a1a" text="SHOW DRINK RECIPE" textAlignment="CENTER" textFill="#be9e44">
+                  <JFXButton fx:id="showDrinkBtn" alignment="CENTER" contentDisplay="CENTER" onAction="#getDrinkDetails" prefHeight="61.0" prefWidth="140.0" ripplerFill="#1a1a1a" text="SHOW DRINK RECIPE" textAlignment="CENTER" textFill="#be9e44">
                      <VBox.margin>
                         <Insets bottom="20.0" left="10.0" right="10.0" top="40.0" />
                      </VBox.margin>
@@ -105,12 +108,12 @@
          <left>
             <VBox prefHeight="460.0" prefWidth="370.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="drinkNameLabel" alignment="CENTER" prefHeight="54.0" prefWidth="374.0" styleClass="drink-name" stylesheets="@styles.css" text="Search For a Drink Using the Search Fields" textAlignment="CENTER" textFill="#faa4bd" translateY="80.0">
+                  <Label fx:id="drinkNameLabel" alignment="CENTER" prefHeight="54.0" prefWidth="374.0" styleClass="drink-name" stylesheets="@styles.css" text="Search For a Drink Using the Search Fields" textAlignment="CENTER" textFill="#faa4bd" translateY="80.0" wrapText="true">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <ImageView fx:id="imageView" fitHeight="259.0" fitWidth="302.0" pickOnBounds="true" preserveRatio="true" translateX="33.0" translateY="80.0">
+                  <ImageView fx:id="imageView" fitHeight="255.0" fitWidth="259.0" pickOnBounds="true" preserveRatio="true" translateX="33.0" translateY="80.0">
                      <VBox.margin>
                         <Insets left="20.0" right="20.0" top="20.0" />
                      </VBox.margin>

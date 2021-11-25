@@ -145,4 +145,9 @@ public class ApiCalls {
         return getAllCategoriesJSON();
 
     }
+
+    //method that will get drinks details from API
+    //create a method that returns all cocktails list from an API
+
+
 }

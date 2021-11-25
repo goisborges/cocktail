@@ -105,7 +105,7 @@
          <left>
             <VBox prefHeight="460.0" prefWidth="370.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="drinkNameLabel" alignment="CENTER" prefHeight="54.0" prefWidth="374.0" styleClass="drink-name" stylesheets="@styles.css" text="Search and Choose Your Drink" textAlignment="CENTER" textFill="#faa4bd" translateY="80.0">
+                  <Label fx:id="drinkNameLabel" alignment="CENTER" prefHeight="54.0" prefWidth="374.0" styleClass="drink-name" stylesheets="@styles.css" text="Search For a Drink Using the Search Fields" textAlignment="CENTER" textFill="#faa4bd" translateY="80.0">
                      <font>
                         <Font size="14.0" />
                      </font>

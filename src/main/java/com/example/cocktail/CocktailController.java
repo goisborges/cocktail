@@ -57,9 +57,15 @@ public class CocktailController implements Initializable {
     @FXML
     private void getSearchResults() throws IOException, InterruptedException {
         ListView.getItems().clear();
+        showDrinkImage();
+        //insert an image saying "Choose your drink"
+
         ApiResponse apiResponse = ApiCalls.getAllCocktailsAPI(searchNameTextField.getText());
-        if (apiResponse != null) {
+        if (apiResponse.getDrinks() != null) {
             ListView.getItems().addAll(apiResponse.getDrinks());
+        }
+        else{
+            drinkNameLabel.setText("No results found");
         }
     }
 
@@ -80,6 +86,7 @@ public class CocktailController implements Initializable {
             try {
                 imageView.setImage(new Image(newValue.getStrDrinkThumb()));
                 drinkNameLabel.setText(newValue.getStrDrink());
+                showDrinkImage();
             } catch (Exception e) {
             }
         });
@@ -92,5 +99,14 @@ public class CocktailController implements Initializable {
             categoryComboBox.getItems().addAll(categories);
         }
 
+    }
+
+    //create a method that will turn the image visible or not visible depending if a drink is selected
+    public void showDrinkImage() {
+        if (ListView.getSelectionModel().getSelectedItem() != null) {
+            imageView.setVisible(true);
+        } else {
+            imageView.setVisible(false);
+        }
     }
 }

@@ -148,6 +148,17 @@ public class ApiCalls {
 
     //method that will get drinks details from API
     //create a method that returns all cocktails list from an API
+    public static DrinkDetails getDrinkDetails(String drinkId) throws IOException, InterruptedException {
+        drinkId = drinkId.trim().replace(" ", "%20");
 
+        String uri = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i="+drinkId;
+
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder().uri(URI.create(uri)).build();
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+        Gson gson = new Gson();
+        return gson.fromJson(response.body(), DrinkDetails.class);
+    }
 
 }

@@ -136,6 +136,7 @@ public class CocktailController implements Initializable {
     @FXML
     private void getDrinkDetails(ActionEvent event) throws IOException, InterruptedException {
         String drinkId = ListView.getSelectionModel().getSelectedItem().getIdDrink();
+        System.out.println(drinkId);
         SceneChanger.changeScenes(event, "drink-details-view.fxml", drinkId);
     }
 }

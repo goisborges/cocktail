@@ -2,7 +2,7 @@ package com.example.cocktail;
 
 public class DrinkDetails {
     private String strDrink;
-    private int idDrink;
+    private String idDrink;
     private String strCategory;
     private String strAlcoholic;
     private String strGlass;
@@ -37,11 +37,11 @@ public class DrinkDetails {
         this.strDrink = strDrink;
     }
 
-    public int getIdDrink() {
+    public String getIdDrink() {
         return idDrink;
     }
 
-    public void setIdDrink(int idDrink) {
+    public void setIdDrink(String idDrink) {
         this.idDrink = idDrink;
     }
 

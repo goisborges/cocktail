@@ -11,6 +11,7 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -35,7 +36,7 @@
          <right>
             <VBox prefHeight="450.0" prefWidth="166.0" BorderPane.alignment="CENTER">
                <children>
-                  <JFXComboBox fx:id="categoryComboBox" promptText="Categories">
+                  <JFXComboBox fx:id="categoryComboBox" promptText="Categories" unFocusColor="WHITE">
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="30.0" />
                      </VBox.margin>
@@ -44,7 +45,7 @@
                      </cursor>
                   </JFXComboBox>
                   <Separator prefWidth="200.0" />
-                  <JFXRadioButton fx:id="alcoholicRadioBtn" text="Alcoholic">
+                  <JFXRadioButton fx:id="alcoholicRadioBtn" text="Alcoholic" textFill="WHITE">
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
@@ -52,7 +53,7 @@
                         <ToggleGroup fx:id="alcoholGroup" />
                      </toggleGroup>
                   </JFXRadioButton>
-                  <JFXRadioButton fx:id="nonalcoholicRadioBtn" text="Non-Alcoholic" toggleGroup="$alcoholGroup">
+                  <JFXRadioButton fx:id="nonalcoholicRadioBtn" text="Non-Alcoholic" textFill="WHITE" toggleGroup="$alcoholGroup">
                      <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
@@ -66,9 +67,9 @@
                         <Cursor fx:constant="TEXT" />
                      </cursor>
                   </TextField>
-                  <Button fx:id="searchBtn" alignment="CENTER" contentDisplay="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#getSearchResults" prefHeight="25.0" prefWidth="145.0" text="Search By Name" textAlignment="CENTER" translateX="5.0">
+                  <Button fx:id="searchBtn" alignment="TOP_LEFT" contentDisplay="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#getSearchResults" prefHeight="25.0" prefWidth="78.0" style="-fx-background-color: #3299a8;" text="search..." textAlignment="CENTER" textFill="WHITE">
                      <VBox.margin>
-                        <Insets bottom="20.0" left="5.0" right="5.0" />
+                        <Insets bottom="20.0" left="10.0" />
                      </VBox.margin>
                      <cursor>
                         <Cursor fx:constant="HAND" />
@@ -82,45 +83,51 @@
                         <Cursor fx:constant="TEXT" />
                      </cursor>
                   </TextField>
-                  <Button fx:id="searchIngredientBtn" alignment="CENTER" contentDisplay="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#getSearchIngredient" prefHeight="25.0" prefWidth="138.0" text="Search By Ingredient" textAlignment="CENTER" translateX="14.0" wrapText="true">
+                  <Button fx:id="searchIngredientBtn" alignment="TOP_LEFT" contentDisplay="RIGHT" defaultButton="true" graphicTextGap="0.0" mnemonicParsing="false" onAction="#getSearchIngredient" prefHeight="25.0" prefWidth="79.0" style="-fx-background-color: #3299a8;" text="search..." textFill="WHITE" wrapText="true">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                      <VBox.margin>
-                        <Insets bottom="20.0" />
+                        <Insets bottom="20.0" left="10.0" />
                      </VBox.margin>
                   </Button>
                   <Separator prefWidth="200.0" />
-                  <JFXButton fx:id="showDrinkBtn" alignment="CENTER" contentDisplay="CENTER" onAction="#getDrinkDetails" prefHeight="61.0" prefWidth="140.0" ripplerFill="#1a1a1a" text="SHOW DRINK RECIPE" textAlignment="CENTER" textFill="#be9e44">
+                  <JFXButton fx:id="showDrinkBtn" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" onAction="#getDrinkDetails" prefHeight="37.0" prefWidth="138.0" ripplerFill="WHITE" style="-fx-background-color: #be9e44;" text="SHOW RECIPE" textAlignment="CENTER" textFill="#612260" translateX="15.0">
                      <VBox.margin>
-                        <Insets bottom="20.0" left="10.0" right="10.0" top="40.0" />
+                        <Insets bottom="20.0" top="40.0" />
                      </VBox.margin>
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
+                     <font>
+                        <Font name="Arial Black" size="12.0" />
+                     </font>
+                     <effect>
+                        <Glow />
+                     </effect>
                   </JFXButton>
                </children>
             </VBox>
          </right>
          <center>
-            <JFXListView fx:id="ListView" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="460.0" prefWidth="259.0" BorderPane.alignment="CENTER_RIGHT" />
+            <JFXListView fx:id="ListView" depth="10" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="338.0" prefWidth="285.0" BorderPane.alignment="TOP_LEFT" />
          </center>
          <left>
-            <VBox prefHeight="460.0" prefWidth="370.0" BorderPane.alignment="CENTER">
+            <VBox prefHeight="460.0" prefWidth="342.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="drinkNameLabel" alignment="CENTER" prefHeight="54.0" prefWidth="374.0" styleClass="drink-name" stylesheets="@styles.css" text="Search For a Drink Using the Search Fields" textAlignment="CENTER" textFill="#faa4bd" translateY="80.0" wrapText="true">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <ImageView fx:id="imageView" fitHeight="255.0" fitWidth="259.0" pickOnBounds="true" preserveRatio="true" translateX="33.0" translateY="80.0">
+                  <ImageView fx:id="imageView" fitHeight="340.0" fitWidth="347.0" pickOnBounds="true" preserveRatio="true">
                      <VBox.margin>
-                        <Insets left="20.0" right="20.0" top="20.0" />
+                        <Insets />
                      </VBox.margin>
                      <image>
                         <Image url="@drinks.jpg" />
                      </image>
                   </ImageView>
+                  <Label fx:id="drinkNameLabel" alignment="CENTER" prefHeight="54.0" prefWidth="374.0" styleClass="drink-name" stylesheets="@styles.css" text="Choose a drink by searching..." textAlignment="CENTER" textFill="WHITE" translateY="20.0" wrapText="true">
+                     <font>
+                        <Font name="Helvetica" size="12.0" />
+                     </font>
+                  </Label>
                </children>
             </VBox>
          </left>

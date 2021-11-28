@@ -2,7 +2,7 @@
     -fx-background-color: #000000;
 }
 .root {
-    -fx-BACKGROUND-COLOR: white;
+    -fx-background-color: linear-gradient(from 200px 400px to 800px 800px, #000000,#581845);
 }
 .drink-name{
     -fx-font-size: 20px;

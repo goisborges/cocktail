@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class DrinkDetailsController implements Initializable {
+public class DrinkDetailsController implements Initializable, InitializeDrink {
 
     @FXML
     private JFXButton backBtn;
@@ -107,49 +107,70 @@ public class DrinkDetailsController implements Initializable {
 
     //method that will call the API to get the drink details
     public void loadDrinkDetails(String drinkId) {
-        DrinkDetails drink = null;
+        ApiResponse drink = null;
         try {
             drink = ApiCalls.getDrinkDetails(drinkId);
+            System.out.println("Drink Details Loaded");
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
+        //console log the drink details
+        System.out.println(drink.getDrinks()[0].getStrDrink());
 
         //set the drink details to the text fields
-        drinkIdTextField.setText(drink.getIdDrink());
-        drinkNameTextField.setText(drink.getStrDrink());
-        drinkInstructionsTextField.setText(drink.getStrInstructions());
-        drinkGlassTextField.setText(drink.getStrGlass());
-        drinkCategoryTextField.setText(drink.getStrCategory());
-        drinkAlcoholicTextField.setText(drink.getStrAlcoholic());
+        drinkIdTextField.setText(drink.getDrinks()[0].getIdDrink());
+        drinkNameTextField.setText(drink.getDrinks()[0].getStrDrink());
+        drinkInstructionsTextField.setText(drink.getDrinks()[0].getStrInstructions());
+        drinkGlassTextField.setText(drink.getDrinks()[0].getStrGlass());
+        drinkCategoryTextField.setText(drink.getDrinks()[0].getStrCategory());
+        drinkAlcoholicTextField.setText(drink.getDrinks()[0].getStrAlcoholic());
         //set ingredients and measures to the labels
-        ingredient1Label.setText(drink.getStrIngredient1());
-        measure1Label.setText(drink.getStrMeasure1());
-        ingredient2Label.setText(drink.getStrIngredient2());
-        measure2Label.setText(drink.getStrMeasure2());
-        ingredient3Label.setText(drink.getStrIngredient3());
-        measure3Label.setText(drink.getStrMeasure3());
-        ingredient4Label.setText(drink.getStrIngredient4());
-        measure4Label.setText(drink.getStrMeasure4());
-        ingredient5Label.setText(drink.getStrIngredient5());
-        measure5Label.setText(drink.getStrMeasure5());
-        ingredient6Label.setText(drink.getStrIngredient6());
-        measure6Label.setText(drink.getStrMeasure6());
-        ingredient7Label.setText(drink.getStrIngredient7());
-        measure7Label.setText(drink.getStrMeasure7());
-        ingredient8Label.setText(drink.getStrIngredient8());
-        measure8Label.setText(drink.getStrMeasure8());
-        ingredient9Label.setText(drink.getStrIngredient9());
-        measure9Label.setText(drink.getStrMeasure9());
-        ingredient10Label.setText(drink.getStrIngredient10());
-        measure10Label.setText(drink.getStrMeasure10());
+        ingredient1Label.setText(drink.getDrinks()[0].getStrIngredient1());
+        measure1Label.setText(drink.getDrinks()[0].getStrMeasure1());
+        if(drink.getDrinks()[0].getStrIngredient2() != null) {
+        ingredient2Label.setText(drink.getDrinks()[0].getStrIngredient2());
+        measure2Label.setText(drink.getDrinks()[0].getStrMeasure2());
+        }
+        if(drink.getDrinks()[0].getStrIngredient3() != null) {
+        ingredient3Label.setText(drink.getDrinks()[0].getStrIngredient3());
+        measure3Label.setText(drink.getDrinks()[0].getStrMeasure3());
+        }
+        if(drink.getDrinks()[0].getStrIngredient4() != null) {
+        ingredient4Label.setText(drink.getDrinks()[0].getStrIngredient4());
+        measure4Label.setText(drink.getDrinks()[0].getStrMeasure4());
+        }
+        if(drink.getDrinks()[0].getStrIngredient5() != null) {
+        ingredient5Label.setText(drink.getDrinks()[0].getStrIngredient5());
+        measure5Label.setText(drink.getDrinks()[0].getStrMeasure5());
+        }
+        if(drink.getDrinks()[0].getStrIngredient6() != null) {
+        ingredient6Label.setText(drink.getDrinks()[0].getStrIngredient6());
+        measure6Label.setText(drink.getDrinks()[0].getStrMeasure6());
+        }
+        if(drink.getDrinks()[0].getStrIngredient7() != null) {
+        ingredient7Label.setText(drink.getDrinks()[0].getStrIngredient7());
+        measure7Label.setText(drink.getDrinks()[0].getStrMeasure7());
+        }
+        if(drink.getDrinks()[0].getStrIngredient8() != null) {
+        ingredient8Label.setText(drink.getDrinks()[0].getStrIngredient8());
+        measure8Label.setText(drink.getDrinks()[0].getStrMeasure8());
+        }
+        if(drink.getDrinks()[0].getStrIngredient9() != null) {
+        ingredient9Label.setText(drink.getDrinks()[0].getStrIngredient9());
+        measure9Label.setText(drink.getDrinks()[0].getStrMeasure9());
+        }
+        if(drink.getDrinks()[0].getStrIngredient10() != null) {
+        ingredient10Label.setText(drink.getDrinks()[0].getStrIngredient10());
+        measure10Label.setText(drink.getDrinks()[0].getStrMeasure10());
+        }
 
 
         //set image to the image view
         try {
-            drinkImageView.setImage(new Image(drink.getStrDrinkThumb()));
+            drinkImageView.setImage(new Image(drink.getDrinks()[0].getStrDrinkThumb()));
+            System.out.println("drink image set" + drink.getDrinks()[0].getStrDrinkThumb());
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -160,6 +181,6 @@ public class DrinkDetailsController implements Initializable {
 
     @FXML
     private void returnToSearch(ActionEvent event) throws IOException, InterruptedException {
-        SceneChanger.changeScenes(event,"cocktails-view.fxml");
+        SceneChanger.changeScenes2(event,"cocktails-view.fxml");
     }
 }

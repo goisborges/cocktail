@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -17,17 +18,20 @@
    <children>
       <BorderPane layoutX="300.0" layoutY="166.0" prefHeight="600.0" prefWidth="800.0" styleClass="root" stylesheets="@styles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <bottom>
-            <JFXButton fx:id="backBtn" text="BACK" BorderPane.alignment="CENTER_LEFT">
+            <JFXButton fx:id="backBtn" alignment="CENTER" contentDisplay="RIGHT" onAction="#returnToSearch" prefHeight="28.0" prefWidth="70.0" style="-fx-background-color: #ffe100;" text="BACK" textAlignment="RIGHT" BorderPane.alignment="CENTER_RIGHT">
                <font>
-                  <Font size="14.0" />
+                  <Font name="Monaco" size="14.0" />
                </font>
                <BorderPane.margin>
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                </BorderPane.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </JFXButton>
          </bottom>
          <top>
-            <Label prefHeight="100.0" prefWidth="803.0" styleClass="header" stylesheets="@styles.css" BorderPane.alignment="CENTER">
+            <Label prefHeight="100.0" prefWidth="803.0" styleClass="header" stylesheets="@styles.css" textAlignment="RIGHT" BorderPane.alignment="CENTER">
                <graphic>
                   <ImageView fitHeight="100.0" fitWidth="114.0" pickOnBounds="true" preserveRatio="true" styleClass="header">
                      <image>
@@ -37,13 +41,80 @@
                </graphic>
             </Label>
          </top>
-         <center>
-            <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="442.0" prefWidth="453.0" BorderPane.alignment="TOP_LEFT">
+         <left>
+            <VBox prefHeight="485.0" prefWidth="322.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="drinkInstructionsTextField" alignment="TOP_LEFT" prefHeight="132.0" prefWidth="453.0" text="INSTRUCTIONS:">
+                  <Label prefHeight="301.0" prefWidth="323.0">
+                     <graphic>
+                        <ImageView fx:id="drinkImageView" fitHeight="296.0" fitWidth="323.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
+                  </Label>
+                  <GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="36.0" prefWidth="329.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="119.61268615722656" minWidth="10.0" prefWidth="77.33599853515625" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="177.52630615234375" minWidth="10.0" prefWidth="80.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="177.52630615234375" minWidth="10.0" prefWidth="78.731201171875" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="114.0" text="CATEGORY" textFill="WHITE" GridPane.columnIndex="1">
+                           <font>
+                              <Font size="10.0" />
+                           </font></Label>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="12.0" prefWidth="97.0" text="GLASS" textAlignment="CENTER" textFill="WHITE">
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="98.0" text="ALCOHOL" textFill="WHITE" GridPane.columnIndex="2">
+                           <font>
+                              <Font size="10.0" />
+                           </font></Label>
+                        <Label fx:id="drinkCategoryTextField" alignment="CENTER" prefHeight="17.0" prefWidth="111.0" text="Label" textFill="#ffe100" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                        <Label fx:id="drinkGlassTextField" alignment="CENTER" prefHeight="17.0" prefWidth="95.0" text="Label" textFill="#ffe100" GridPane.rowIndex="1">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                        <Label fx:id="drinkAlcoholicTextField" alignment="CENTER" prefHeight="17.0" prefWidth="98.0" text="Label" textFill="#ffe100" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                     </children>
                      <VBox.margin>
-                        <Insets top="15.0" />
+                        <Insets left="5.0" right="5.0" top="15.0" />
                      </VBox.margin>
+                  </GridPane>
+                  <Label fx:id="drinkNameTextField" alignment="CENTER" contentDisplay="CENTER" prefHeight="66.0" prefWidth="324.0" text="Label" textFill="WHITE">
+                     <font>
+                        <Font name="Georgia Italic" size="24.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="drinkIdTextField" text="Label" />
+               </children>
+            </VBox>
+         </left>
+         <right>
+            <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="442.0" prefWidth="453.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label fx:id="drinkInstructionsTextField" alignment="TOP_LEFT" prefHeight="132.0" prefWidth="453.0" text="INSTRUCTIONS:" textFill="WHITE" wrapText="true">
+                     <VBox.margin>
+                        <Insets right="15.0" top="15.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="Monaco" size="13.0" />
+                     </font>
                   </Label>
                   <GridPane prefHeight="296.0" prefWidth="453.0">
                     <columnConstraints>
@@ -63,81 +134,103 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label fx:id="ingredient1Label" text="Label" />
-                        <Label fx:id="measure1Label" text="Label" GridPane.columnIndex="1" />
-                        <Label fx:id="ingredient2Label" text="Label" GridPane.rowIndex="1" />
-                        <Label fx:id="measure2Label" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Label fx:id="ingredient3Label" text="Label" GridPane.rowIndex="2" />
-                        <Label fx:id="measure3Label" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <Label fx:id="ingredient4Label" text="Label" GridPane.rowIndex="3" />
-                        <Label fx:id="measure4Label" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <Label fx:id="ingredient5Label" text="Label" GridPane.rowIndex="4" />
-                        <Label fx:id="measure5Label" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <Label fx:id="ingredient6Label" text="Label" GridPane.rowIndex="5" />
-                        <Label fx:id="measure6Label" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                        <Label fx:id="ingredient7Label" text="Label" GridPane.rowIndex="6" />
-                        <Label fx:id="measure7Label" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                        <Label fx:id="ingredient8Label" text="Label" GridPane.rowIndex="7" />
-                        <Label fx:id="measure8Label" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                        <Label fx:id="ingredient9Label" text="Label" GridPane.rowIndex="8" />
-                        <Label fx:id="measure9Label" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                        <Label fx:id="ingredient10Label" text="Label" GridPane.rowIndex="9" />
-                        <Label fx:id="measure10Label" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-                     </children>
-                  </GridPane>
-               </children>
-            </VBox>
-         </center>
-         <left>
-            <VBox prefHeight="442.0" prefWidth="217.0" BorderPane.alignment="CENTER">
-               <children>
-                  <GridPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="158.0" prefWidth="216.0">
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="119.61268615722656" minWidth="10.0" prefWidth="88.6302261352539" />
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="177.52630615234375" minWidth="10.0" prefWidth="127.3697738647461" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                     <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" text="ID" textAlignment="RIGHT">
+                        <Label fx:id="ingredient1Label" textFill="WHITE">
                            <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Label text="NAME" GridPane.rowIndex="1" />
-                        <Label text="CATEGORY" GridPane.rowIndex="2" />
-                        <Label text="GLASS" GridPane.rowIndex="3">
-                           <GridPane.margin>
-                              <Insets />
-                           </GridPane.margin>
-                        </Label>
-                        <Label text="ALCOHOL" GridPane.rowIndex="4" />
-                        <Label fx:id="drinkIdTextField" text="Label" GridPane.columnIndex="1" />
-                        <Label fx:id="drinkNameTextField" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Label fx:id="drinkCategoryTextField" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <Label fx:id="drinkGlassTextField" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <Label fx:id="drinkAlcoholicTextField" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <Font name="StencilStd" size="14.0" />
+                           </font></Label>
+                        <Label fx:id="measure1Label" textFill="WHITE" GridPane.columnIndex="1">
+                           <font>
+                              <Font name="StencilStd" size="14.0" />
+                           </font></Label>
+                        <Label fx:id="ingredient2Label" textFill="WHITE" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="StencilStd" size="14.0" />
+                           </font></Label>
+                        <Label fx:id="measure2Label" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="StencilStd" size="14.0" />
+                           </font></Label>
+                        <Label fx:id="ingredient3Label" textFill="WHITE" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="StencilStd" size="14.0" />
+                           </font></Label>
+                        <Label fx:id="measure3Label" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="StencilStd" size="14.0" />
+                           </font></Label>
+                        <Label fx:id="ingredient4Label" textFill="WHITE" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="StencilStd" size="14.0" />
+                           </font></Label>
+                        <Label fx:id="measure4Label" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="StencilStd" size="14.0" />
+                           </font></Label>
+                        <Label fx:id="ingredient5Label" textFill="WHITE" GridPane.rowIndex="4">
+                           <font>
+                              <Font name="StencilStd" size="14.0" />
+                           </font></Label>
+                        <Label fx:id="measure5Label" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                           <font>
+                              <Font name="StencilStd" size="14.0" />
+                           </font></Label>
+                        <Label fx:id="ingredient6Label" textFill="WHITE" GridPane.rowIndex="5">
+                           <font>
+                              <Font name="StencilStd" size="14.0" />
+                           </font></Label>
+                        <Label fx:id="measure6Label" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                           <font>
+                              <Font name="StencilStd" size="14.0" />
+                           </font></Label>
+                        <Label fx:id="ingredient7Label" textFill="WHITE" GridPane.rowIndex="6">
+                           <font>
+                              <Font name="StencilStd" size="14.0" />
+                           </font></Label>
+                        <Label fx:id="measure7Label" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                           <font>
+                              <Font name="StencilStd" size="14.0" />
+                           </font></Label>
+                        <Label fx:id="ingredient8Label" textFill="WHITE" GridPane.rowIndex="7">
+                           <font>
+                              <Font name="StencilStd" size="14.0" />
+                           </font></Label>
+                        <Label fx:id="measure8Label" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                           <font>
+                              <Font name="StencilStd" size="14.0" />
+                           </font></Label>
+                        <Label fx:id="ingredient9Label" textFill="WHITE" GridPane.rowIndex="8">
+                           <font>
+                              <Font name="StencilStd" size="14.0" />
+                           </font></Label>
+                        <Label fx:id="measure9Label" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                           <font>
+                              <Font name="StencilStd" size="14.0" />
+                           </font></Label>
+                        <Label fx:id="ingredient10Label" textFill="WHITE" GridPane.rowIndex="9">
+                           <font>
+                              <Font name="StencilStd" size="14.0" />
+                           </font></Label>
+                        <Label fx:id="measure10Label" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="9">
+                           <font>
+                              <Font name="StencilStd" size="14.0" />
+                           </font></Label>
                      </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
                      <VBox.margin>
-                        <Insets left="15.0" />
+                        <Insets right="15.0" />
                      </VBox.margin>
                   </GridPane>
-                  <Label prefHeight="249.0" prefWidth="223.0">
-                     <graphic>
-                        <ImageView fx:id="drinkImageView" fitHeight="177.0" fitWidth="218.0" pickOnBounds="true" preserveRatio="true" />
-                     </graphic>
-                     <padding>
-                        <Insets left="15.0" />
-                     </padding>
-                  </Label>
                </children>
+               <opaqueInsets>
+                  <Insets right="15.0" />
+               </opaqueInsets>
+               <BorderPane.margin>
+                  <Insets right="15.0" />
+               </BorderPane.margin>
             </VBox>
-         </left>
+         </right>
       </BorderPane>
    </children>
 </AnchorPane>

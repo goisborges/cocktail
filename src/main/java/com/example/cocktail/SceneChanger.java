@@ -21,6 +21,7 @@ public class SceneChanger {
 
             controller.loadDrinkDetails(drinkId);
 
+
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 //            stage.setTitle(drinkId);
             stage.setScene(scene);
@@ -28,7 +29,7 @@ public class SceneChanger {
 
     }
 
-    public static void changeScenes(ActionEvent event, String fxmlFile) throws IOException, InterruptedException {
+    public static void changeScenes2(ActionEvent event, String fxmlFile) throws IOException, InterruptedException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(fxmlFile));
         Scene scene = new Scene(fxmlLoader.load());
 

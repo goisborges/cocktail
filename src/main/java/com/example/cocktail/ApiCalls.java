@@ -148,17 +148,47 @@ public class ApiCalls {
 
     //method that will get drinks details from API
     //create a method that returns all cocktails list from an API
-    public static DrinkDetails getDrinkDetails(String drinkId) throws IOException, InterruptedException {
+    public static ApiResponse getDrinkDetails(String drinkId) throws IOException, InterruptedException {
         drinkId = drinkId.trim().replace(" ", "%20");
 
         String uri = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i="+drinkId;
+        System.out.println("uri: " + uri);
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder().uri(URI.create(uri)).build();
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
         Gson gson = new Gson();
-        return gson.fromJson(response.body(), DrinkDetails.class);
+        ApiResponse apiResponse = null;
+        apiResponse  = gson.fromJson(response.body(), ApiResponse.class);
+        System.out.println("API REsponse" + apiResponse);
+        System.out.println(apiResponse.getDrinks());
+        return apiResponse;
+    }
+
+    //create an API method that returns a list of drinks by category
+    public static ApiResponse getDrinksByCategory(String category) {
+        category = category.trim().replace(" ", "%20");
+
+        //create a GSON object
+        Gson gson = new Gson();
+
+        ApiResponse response = null;
+
+        try {
+            HttpClient client = HttpClient.newHttpClient();
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create("https://www.thecocktaildb.com/api/json/v1/1/filter.php?c="+category))
+                    .build();
+            HttpResponse<String> httpResponse = client.send(request, HttpResponse.BodyHandlers.ofString());
+            response = gson.fromJson(httpResponse.body(), ApiResponse.class);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return response;
+
     }
 
 }

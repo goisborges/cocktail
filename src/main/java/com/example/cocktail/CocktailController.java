@@ -1,5 +1,7 @@
 package com.example.cocktail;
 
+import com.google.gson.Gson;
+import com.google.gson.stream.JsonReader;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXListView;
@@ -15,6 +17,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -66,7 +69,7 @@ public class CocktailController implements Initializable {
         ListView.getItems().clear();
 
         //when user search for a drink, set the image to a general drink image and ask user to choose a drink
-        File file = new File("src/main/resources/com/example/cocktail/drinks-background.jpg");
+        File file = new File("src/main/resources/com/example/cocktail/drinks-background.png");
         Image image = new Image(file.toURI().toString());
         imageView.setImage(image);
         drinkNameLabel.setText("Choose a Drink");
@@ -86,7 +89,7 @@ public class CocktailController implements Initializable {
         ListView.getItems().clear();
 
         //when user search for a drink, set the image to a general drink image and ask user to choose a drink
-        File file = new File("src/main/resources/com/example/cocktail/drinks-background.jpg");
+        File file = new File("src/main/resources/com/example/cocktail/drinks-background.png");
         Image image = new Image(file.toURI().toString());
         imageView.setImage(image);
         drinkNameLabel.setText("Choose a Drink");
@@ -117,14 +120,49 @@ public class CocktailController implements Initializable {
         //populate the category combobox with the categories using ApiCalls method named getAllCategoriesJSON
         ApiResponse apiResponse = ApiCalls.getCategoryList();
         if (apiResponse != null) {
-            ArrayList<String> categories = new ArrayList<>(Arrays.asList("Ordinary Drink", "Cocktail", "Milk / Float / Shake", "Other/Unknown", "Cocoa", "Shot"));
-            //add the categories to the combobox
-            categoryComboBox.getItems().addAll(categories);
+            //populate the combobox with the categories from categories.json file
+            Gson gson = new Gson();
+
+            ApiResponse response = null;
+
+            try (
+                    FileReader reader = new FileReader("src/main/resources/categories.json");
+                    JsonReader jsonReader = new JsonReader(reader)
+            )
+            {
+                response = gson.fromJson(jsonReader, ApiResponse.class);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            System.out.println(response);
+            //populate the combo box with the response variable
+            categoryComboBox.getItems().addAll(response.getCategories());
         }
+
+        //add listener to the combobox
+        //if a category is selected, populate the listview with the drinks of that category
+        categoryComboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            try {
+                //when user choose a category, get the list of drinks for that category
+                ApiResponse apiResponse1 = ApiCalls.getDrinksByCategory(newValue);
+                if (apiResponse1.getDrinks() != null) {
+                    ListView.getItems().clear();
+                    ListView.getItems().addAll(apiResponse1.getDrinks());
+                }
+                else{
+                    drinkNameLabel.setText("No results found");
+                }
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        );
 
     }
 
-    //create a method that will turn the image visible or not visible depending if a drink is selected
+    //method that will turn the image visible or not visible depending if a drink is selected
     public void showDrinkImage() {
         if (ListView.getSelectionModel().getSelectedItem() != null) {
             imageView.setVisible(true);
@@ -133,6 +171,8 @@ public class CocktailController implements Initializable {
         }
     }
 
+    //create a method that will open the drink details page after getting the drink id
+    //it calls the SceneChanger class to open the new scene
     @FXML
     private void getDrinkDetails(ActionEvent event) throws IOException, InterruptedException {
         String drinkId = ListView.getSelectionModel().getSelectedItem().getIdDrink();

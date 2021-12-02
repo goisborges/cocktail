@@ -110,7 +110,7 @@
             </VBox>
          </right>
          <center>
-            <JFXListView fx:id="ListView" depth="10" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="338.0" prefWidth="285.0" BorderPane.alignment="TOP_LEFT" />
+            <JFXListView id="drinkList" fx:id="ListView" depth="10" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="338.0" prefWidth="285.0" styleClass="drinkList" stylesheets="@styles.css" BorderPane.alignment="TOP_LEFT" />
          </center>
          <left>
             <VBox prefHeight="460.0" prefWidth="342.0" BorderPane.alignment="CENTER">

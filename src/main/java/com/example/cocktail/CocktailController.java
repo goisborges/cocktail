@@ -22,7 +22,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class CocktailController implements Initializable {
 
@@ -160,7 +162,13 @@ public class CocktailController implements Initializable {
         }
         );
 
+
     }
+
+
+
+
+
 
     //method that will turn the image visible or not visible depending if a drink is selected
     public void showDrinkImage() {

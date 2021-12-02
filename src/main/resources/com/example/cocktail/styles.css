@@ -10,4 +10,10 @@
     -fx-text-fill: #FAA4BD;
     -fx-font-family: 'Arial';
  }
+ .drinkList{
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+    -fx-font-family: 'Arbutus Slab';
+ }
 

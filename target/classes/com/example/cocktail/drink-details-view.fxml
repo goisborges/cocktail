@@ -108,7 +108,8 @@
          <right>
             <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="442.0" prefWidth="453.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="drinkInstructionsTextField" alignment="TOP_LEFT" prefHeight="132.0" prefWidth="453.0" text="INSTRUCTIONS:" textFill="WHITE" wrapText="true">
+                  <Label text="INSTRUCTIONS:" textFill="#ababab" />
+                  <Label fx:id="drinkInstructionsTextField" alignment="TOP_LEFT" prefHeight="132.0" prefWidth="453.0" styleClass="drinkList" stylesheets="@styles.css" text="INSTRUCTIONS:" textFill="WHITE" wrapText="true">
                      <VBox.margin>
                         <Insets right="15.0" top="15.0" />
                      </VBox.margin>
@@ -116,7 +117,8 @@
                         <Font name="Monaco" size="13.0" />
                      </font>
                   </Label>
-                  <GridPane prefHeight="296.0" prefWidth="453.0">
+                  <Label text="INGREDIENTS:" textFill="#ababab" />
+                  <GridPane prefHeight="296.0" prefWidth="453.0" styleClass="drinkList" stylesheets="@styles.css">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

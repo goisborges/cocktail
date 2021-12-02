@@ -16,4 +16,7 @@
     -fx-text-fill: #ffffff;
     -fx-font-family: 'Arbutus Slab';
  }
+ .footer {
+    -fx-background-color: #5d5d5d;
+}
 

@@ -29,6 +29,9 @@ import java.util.stream.Collectors;
 public class CocktailController implements Initializable {
 
     @FXML
+    private Label rowsReturnedLabel;
+
+    @FXML
     private JFXListView<Cocktail> ListView;
 
     @FXML
@@ -80,6 +83,8 @@ public class CocktailController implements Initializable {
         ApiResponse apiResponse = ApiCalls.getAllCocktailsAPI(searchNameTextField.getText());
         if (apiResponse.getDrinks() != null) {
             ListView.getItems().addAll(apiResponse.getDrinks());
+            //set the number of rows returned on the row returned label
+            rowsReturnedLabel.setText(String.valueOf(apiResponse.getDrinks().length) + " drink recipes found");
         }
         else{
             drinkNameLabel.setText("No results found");
@@ -100,6 +105,8 @@ public class CocktailController implements Initializable {
 
         if (apiResponse.getDrinks() != null) {
             ListView.getItems().addAll(apiResponse.getDrinks());
+            //set the number of rows returned on the row returned label
+            rowsReturnedLabel.setText(String.valueOf(apiResponse.getDrinks().length) + " drink recipes found");
         }
         else{
             drinkNameLabel.setText("No results found");
@@ -151,6 +158,8 @@ public class CocktailController implements Initializable {
                 if (apiResponse1.getDrinks() != null) {
                     ListView.getItems().clear();
                     ListView.getItems().addAll(apiResponse1.getDrinks());
+                    //set the number of rows returned on the row returned label
+                    rowsReturnedLabel.setText(String.valueOf(apiResponse1.getDrinks().length) + " drink recipes found");
                 }
                 else{
                     drinkNameLabel.setText("No results found");

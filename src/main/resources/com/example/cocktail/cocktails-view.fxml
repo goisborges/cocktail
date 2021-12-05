@@ -24,7 +24,7 @@
    <children>
       <BorderPane layoutX="300.0" layoutY="171.0" prefHeight="600.0" prefWidth="800.0" styleClass="root" stylesheets="@styles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
-            <Label id="header" prefHeight="103.0" prefWidth="800.0" styleClass="header" stylesheets="@styles.css" BorderPane.alignment="TOP_CENTER">
+            <Label id="header" alignment="BOTTOM_LEFT" graphicTextGap="234.0" prefHeight="103.0" prefWidth="800.0" styleClass="header" stylesheets="@styles.css" text="Powered by: www.thecocktaildb.com" textFill="#856b3d" BorderPane.alignment="CENTER_RIGHT">
                <graphic>
                   <ImageView fitHeight="140.0" fitWidth="157.0" pickOnBounds="true" preserveRatio="true" translateX="30.0" translateY="-9.0">
                      <image>
@@ -32,6 +32,12 @@
                      </image>
                   </ImageView>
                </graphic>
+               <font>
+                  <Font name="American Typewriter" size="13.0" />
+               </font>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
             </Label>
          </top>
          <right>
@@ -122,7 +128,12 @@
          <bottom>
             <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <JFXButton fx:id="showDrinkBtn" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" onAction="#getDrinkDetails" prefHeight="40.0" prefWidth="142.0" ripplerFill="WHITE" style="-fx-background-color: #be9e44;" text="SHOW RECIPE" textAlignment="RIGHT" textFill="#612260">
+                  <Label prefHeight="99.0" prefWidth="633.0" text="Search by categories, by drink name or by ingredient and select your drink from the list to see the recipe." textFill="WHITE">
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding>
+                  </Label>
+                  <JFXButton fx:id="showDrinkBtn" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" onAction="#getDrinkDetails" prefHeight="40.0" prefWidth="157.0" ripplerFill="WHITE" style="-fx-background-color: #be9e44;" text="SHOW RECIPE" textAlignment="RIGHT" textFill="#612260">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -133,7 +144,7 @@
                         <Glow />
                      </effect>
                      <HBox.margin>
-                        <Insets left="647.0" top="20.0" />
+                        <Insets top="20.0" />
                      </HBox.margin>
                   </JFXButton>
                </children>
